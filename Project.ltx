@@ -1,0 +1,149 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage[symbol*]{footmisc}
+\usepackage{graphicx}
+\graphicspath{{noiseimages/}}
+\usepackage{ragged2e} 
+
+
+\author{A. Kirsanau}
+\title{Trochę o Macierzach}
+\date{11.12.2014}
+
+\linespread{1.2}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Krótkie wprowadzenie}
+\label{sec:KrótkieWprowadzenie}
+
+Macierz – w matematyce układ liczb, symboli lub wyrażeń zapisanych w postaci prostokątnej tablicy. Choć słowo „macierz” oznacza najczęściej macierz dwuwskaźnikową, to możliwe jest rozpatrywanie macierzy wielowskaźnikowych (zob. notacja wielowskaźnikowa). Macierze jednowskaźnikowe nazywa się często wektorami wierszowymi lub kolumnowymi, co wynika z zastosowań macierzy w algebrze liniowej. W informatyce macierze modeluje się zwykle za pomocą (najczęściej dwuwymiarowych) tablic.
+
+Poziomy układ elementów znajdujących się w jednej linii nazywa się wierszem, a pionowy – kolumną macierzy. Dane wpisane w macierz nazywa się jej elementami, współczynnikami lub wyrazami; każdy element można jednoznacznie zidentyfikować podając jego wskaźniki lub indeksy − zwykle w tej kolejności: numer wiersza i kolumny macierzy, w której stoi. Para złożona z liczby wierszy i kolumn nazywana jest typem macierzy − często liczby te oddziela się znakiem \textit{x}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.00\textwidth]{kolumny.png}
+\caption{Kolumny i wiersze macieży 4x4}
+\label{fig:images}
+\end{figure}
+
+Wprowadzenie i rysunek wzięty z http://pl.wikipedia.org/wiki/Macierz .
+\newpage
+
+\section{Działania z macierzami}
+\label{sec:DziałaniaZMacierzami}
+
+\begin{array}{|c|ccccc|}
+\hline 
++/- & if & A_N_x_M & i & B_N_x_M &\\
+\hline 
+X(*) & if & A_K_x_N & i & B_N_x_M & \\
+\hline
+T & zapisuje&kolumny&jako&wiersze & \\
+\hline
+A^-^1 & odwraca&maciez&jezeli&jest&mozliwie  \\
+\hline
+\end{array}
+
+Teraz trochę więcej o tych działaniach. 
+\begin{itemize}
+\item Żeby dodać albo odjąć macież, ilość wierszy i kolumn musi być jednakowa. Dodawanie jest przemienne.
+\item W przypadku mnożenia potrzebujemy, żeby ilość kolumn pierwszej macierzy była równa ilośći wierszy drugiej. Ważno pamiętać, że A*B może, ale nie musi być równa B*A. Z tego wnioskujemy, że przemienność mnożenia nie działa w macieżach. Naprzykład: równanie B*A*C*(D+E) możliwe wykonywać albo w sposób (B*A)*C*(D+E) albo  B*(A*C)*(D+E) albo inaczej, no tylko nie zmieniając porządku macierzy przy obliczeniu.
+\item Transpozycja zapisuje się jako $A^T$. Dla każdej macierzy transponowanej też istnieje $B^T$, z tego otrzymujemy że $(A^T)^T$ jest równa A. Przykłady:
+
+\begin{displaymath}
+\mathbf{A} =
+\left[ \begin{array}{cc}
+a_{11} & a_{12}\\
+a_{21} & a_{22}\\
+\end{array} \right]
+\end{displaymath}
+
+\begin{displaymath}
+\mathbf{A^T} =
+\left[ \begin{array}{cc}
+a_{11} & a_{21}\\
+a_{12} & a_{22}\\
+\end{array} \right]
+\end{displaymath}
+
+\item Macierz $a^-^1$ albo macierz odwrotna do A oblicza się dopełnieniem macierzy A macierzą jedynkowej I, lewa strona musi być przekształcona do formy schodkowej, wtedy z prawej strony otrymamy wynik - $A^-^1$. Ale trzeba pamiętać, że nie każda macież jest odwrotna. A dla macierzy $X_2_x_2$ mamy krótkę formulę obliczenia $X^-^1$:
+\begin{displaymath}
+\mathbf{X} =
+\left[ \begin{array}{cc}
+a & b\\
+c & d\\
+\end{array} \right]
+\end{displaymath}
+\begin{displaymath}
+\mathbf{$X^-^1$*(a*d-b*c)} =
+\left[ \begin{array}{cc}
+d & -b\\
+-c & a\\
+\end{array} \right]
+\end{displaymath}
+\end{itemize}
+
+\section{Zastosowanie macierzej}
+\label{sec:ZastosowanieMacierzej}
+Za pomocą macierzy można rozwiązać systemy równań z dużą ilością zmiennych. Taki prykład: 
+\begin{equation}
+y = \left\{	
+\begin{array}{ll}
+2x_1^2 + x_2 = 0  \\
+3x_1 - 5 x_2 = 1 \\
+\end{array} \right.
+\label{eq:nr3}
+\end{equation}
+Można zapisać jako:
+\begin{displaymath}
+\left[ \begin{array}{ccc}
+2 & 1 &| 0\\
+3 & 5 &| 1\\
+\end{array} \right]
+\end{displaymath}
+Wektory:
+
+\begin{figure}[!ht]
+\centering
+\setlength{\unitlength}{0.75mm}
+\begin{picture}(60,60)
+\put(10,30){\vector(4,0){50}}
+\put(30,10){\vector(0,4){50}}
+\put(30,30){\vector(2,1){10}}
+\put(30,30){\vector(1,3){10}}
+
+\end{picture}
+\caption{Wektory A(1,3) i B(2,1)}}
+\label{fig:strzaleczki}
+\end{figure}
+Wektory możliwe rospatrywać jako inny przypadek macieżej jednokolumnowych. Takim sposobem wektor A(1,3) będzie wyglądał jako:
+\begin{displaymath}
+\mathbf{A} =
+\left[ \begin{array}{c}
+1 \\
+3 \\
+\end{array} \right]
+\end{displaymath}
+
+Na tym krótkie wprowadzenie się kończy. Dziękuję za uwagę.
+
+\section{Bibliografia}
+\label{sec:Bibliografia}
+\begin{itemize}
+\item Nie za krótkie wprowadzenie do systemu {\LaTeX} 2ε.
+\item http://pl.wikipedia.org
+\end{itemize}
+
+
+
+
+\end{document}
